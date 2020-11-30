@@ -1,13 +1,19 @@
-db:
-	image: postgres
-	eviroment:
-		POSTGRES_PASSWORD: masterkey
-web:
-	build: .
-	command: python run.py
-	volumes:
-		- .:/code
-	ports:
-		- 5000:5000
-	links:
-		-db
+version: "2"
+services:
+ db:
+  image: postgres
+  environment:
+   - POSTGRES_DB=postgres
+   - POSTGRES_USER=postgres
+   - POSTGRES_PASSWORD=masterkey
+ web:
+  build: .
+  command: python run.py
+  volumes:
+   - .:/code
+  ports:
+   - 5000:5000   
+  links:
+   - db
+  depends_on:
+   - db
