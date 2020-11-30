@@ -1,5 +1,7 @@
 db:
 	image: postgres
+	eviroment:
+		POSTGRES_PASSWORD: masterkey
 web:
 	build: .
 	command: python run.py
